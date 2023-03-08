@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+ {% block body %}
+    
+      <!-- Page Header-->
+                <header class="masthead" style="background-image: url('{{url_for('static', filename='images/home-bg.jpg')}}')">
+    <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h2 class="display-3">{{params['blog_edit']}}</h2>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- Post Form -->
+ 
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-10 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-9">
+                            <form enctype="multipart/form-data" action="/edit/{{edit_post.sno}}" method="post">
+                                <div class="form-floating">
+                                    <input class="form-control" id="title" type="text" placeholder="Enter a Title" data-sb-validations="required" name='title' value="{{edit_post.title}}" />
+                                    <label for="name">Title</label>
+                                    
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" id="subtitle" type="text" placeholder="Enter a Subtitle" data-sb-validations="required" name='subtitle' value="{{edit_post.subtitle}}"/>
+                                    <label for="email">subtitle</label>
+                                   
+                                </div>
+                                
+                                    <div class="form-floating">
+                                    <input class="form-control" type="file" name="file" value="{{edit_post.filename}}">
+
+                                </div>
+
+
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="content" placeholder="Enter your message here..." style="height: 12rem" data-sb-validations="required" name="content">{{edit_post.content}}</textarea>
+                                    <label for="message" >content</label>
+
+                                    <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                                </div>
+                                <br />
+                                <!-- Submit success message-->
+                                <!---->
+                                <!-- This is what your users will see when the form-->
+                                <!-- has successfully submitted-->
+                                <div class="d-none" id="submitSuccessMessage">
+                                    <div class="text-center mb-3">
+                                        <div class="fw-bolder">Form submission successful!</div>
+                                        To activate this form, sign up at
+                                        <br />
+                                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    </div>
+                                </div>
+                                <!-- Submit Button-->
+                                <button class="btn btn-primary" id="sendMessageButton" type="submit">Post</button>
+                                <a class=" btn btn-primary" href="{{ url_for('dashboard') }}">Back To Dashboard</a>
+                            </form>
+                            <br>
+                        </div>
+{% endblock %}

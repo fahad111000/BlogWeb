@@ -1,0 +1,100 @@
+  {% extends "base.html" %}
+        {% block body %}
+
+        <header class="masthead" > 
+           <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h2>Admin Dashboard</h2>
+                    </header>
+
+<div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+
+
+         <!-- Post preview-->
+                    <div class="post-preview ">
+                    <h3 class="text-primary">Admin Posts Update</h3>
+                    <hr>
+                    
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sno</th>
+      <th scope="col">Title</th>
+      <th scope="col">Posted Date</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+       
+     
+    </tr>
+  </thead>
+
+    <tr>
+    {% for data in post_data %}
+      <th scope="row">{{ loop.index }}</th>
+      <td class="text-primary inter-wood">{{data.title}}</td>
+      <td>{{data.date}}</td>
+      <td><a class="btn btn-outline-primary" href="{{url_for('edit', sno=data.sno)}}"> Edit</a></td>
+      <td><a class="btn btn-outline-primary" href="{{url_for('delete', sno=data.sno)}}"> Delete</a></td>
+    </tr>
+
+        {% endfor %}
+</table>
+<br>
+<br><br><br>
+
+        <h3 class="text-primary">Admin Add Post</h3>
+        <hr class="my">
+                        <form  action="/AddPosts" method="post" enctype="multipart/form-data">
+                                <div class="form-floating">
+                                    <input class="form-control" id="title" type="text" placeholder="Enter your name..." data-sb-validations="required" name='title'/>
+                                    <label for="name">Title</label>
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" id="subtitle" type="text" placeholder="Enter your email..." data-sb-validations="required" name='subtitle'/>
+                                    <label for="email">subtitle</label>
+                                   
+                                </div>  
+
+                                <div class="form-floating">
+                                    <input class="form-control" type="file" name="file">
+
+                                </div>
+
+                                
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="content" placeholder="Enter your message here..." style="height: 12rem" data-sb-validations="required" name="content"></textarea>
+                                    <label for="message" >content</label>
+
+                                    <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                                </div>
+                                <br />
+                                <!-- Submit success message-->
+                                <!---->
+                                <!-- This is what your users will see when the form-->
+                                <!-- has successfully submitted-->
+                                <div class="d-none" id="submitSuccessMessage">
+                                    <div class="text-center mb-3">
+                                        <div class="fw-bolder">Form submission successful!</div>
+                                        To activate this form, sign up at
+                                        <br />
+                                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-primary" id="sendMessageButton" type="submit">Post</button>
+                            </form>
+
+                        <br>
+                        <a href="{{url_for('AddPosts')}}" class=" btn btn-outline-primary text-primary"> Add Posts</a>
+                        <hr>
+                            <div ><a class="btn btn-outline-primary" href="/logout">Logout</a></div>
+                        </div>        
+
+          
+
+
+{% endblock %}

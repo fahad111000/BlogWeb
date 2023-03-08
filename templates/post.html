@@ -1,0 +1,34 @@
+    {% extends "base.html" %}
+        {% block body %}
+
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{{url_for('static', filename='images/AddPost.jpeg')}}')">
+        </header>
+        <hr>
+
+        
+                   
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+
+                <div class="post-preview">
+                <h1 class="text-primary"> Post</h1><br>
+                    <h3>{{data.title}} </h3> <br>
+                      <strong class="post-meta"> {{data.subtitle}}</strong><br><br>
+
+                        <img src="{{url_for('static', filename='images/blog_images/' + data.filename)}}" width="700" height="450"><br><hr>
+
+                        <p class="post-meta">
+                        {{data.content}} <br><br>
+                    </p>
+
+
+                    </div> 
+                    <br>
+                    <div class="text-center">
+                    <a class="btn btn-outline-primary " href="{{ url_for('posts')}}">Back Post</a>
+                    <a class=" btn btn-outline-primary" href="{{ url_for('dashboard') }}">Back To Dashboard</a>
+                    </div>
+{% endblock %}

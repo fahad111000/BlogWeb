@@ -1,0 +1,45 @@
+    {% extends "base.html" %}
+        {% block body %}
+
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{{url_for('static', filename='images/AddPost.jpeg')}}')">
+        </header>
+        
+
+        
+        <!-- Post Content-->
+         <h1 class="row gx-4 gx-lg-5 justify-content-center text-primary">Posts</h1>
+            <hr><br><br>  
+
+
+         {% for data in post_data %}
+            <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+
+
+             
+         <!-- Post preview-->
+                    <div class="post-preview ">
+                        
+
+                        <a href="{{ url_for('post', sno=data.sno) }}">
+                            <h2>{{data.title[0:140]}}...</h2>
+                            <h4 class="post-subtitle">{{data.subtitle[0:74]}}...</h4>
+                        </a>
+
+                        
+                        <img src="{{url_for('static', filename='images/blog_images/' + data.filename )}}" width="700" height="450">
+
+
+                        <p>{{data.content[0:120]}} <a href="{{ url_for('post', sno=data.sno) }}" class="text-primary">   See More..</a></p>
+
+                    <div class="d-flex justify-content-start mb-4"><a href="{{ url_for('post', sno=data.sno) }}" class="btn btn-outline-primary text-uppercase"> Read more </a></div> 
+                    <hr>
+                    </div>
+                </div>
+                        
+
+        {% endfor %}
+{% endblock %}
